@@ -1,0 +1,36 @@
+From 880edafb2376ed36cb5d366883a9725fd3a7f520 Mon Sep 17 00:00:00 2001
+From: Sergio Prado <sergio.prado@e-labworks.com>
+Date: Thu, 16 Jan 2025 16:58:04 -0300
+Subject: [PATCH] arm: imx: imx8m: soc: Fix VPU fdt disable fixup
+
+With the introduction of downstream Linux 6.6, the iMX8MP VPU block
+control node in DTS was renamed "blk-ctl@38330000" and will not match
+the ones found in `node_path_imx8mp` resulting in the node not being
+disabled on the VPU-less variants.
+
+Add an extra node_path entry for imx8mp VPU block control that match
+with downstream Linux.
+
+Upstream-Status: Submitted [https://lore.kernel.org/r/20241001160152.336121-1-ivitro@gmail.com/]
+
+Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+Signed-off-by: Sergio Prado <sergio.prado@e-labworks.com>
+---
+ arch/arm/mach-imx/imx8m/soc.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/mach-imx/imx8m/soc.c b/arch/arm/mach-imx/imx8m/soc.c
+index 85dc8b51a145..5c7a4fee05db 100644
+--- a/arch/arm/mach-imx/imx8m/soc.c
++++ b/arch/arm/mach-imx/imx8m/soc.c
+@@ -1004,6 +1004,7 @@ int disable_vpu_nodes(void *blob)
+ 		"/soc@0/video-codec@38300000",
+ 		"/soc@0/video-codec@38310000",
+ 		"/soc@0/blk-ctrl@38330000",
++		"/soc@0/blk-ctl@38330000",
+ 	};
+ 
+ 	static const char * const nodes_path_8mp[] = {
+-- 
+2.34.1
+
