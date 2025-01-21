@@ -17,3 +17,7 @@ SRC_URI:remove = "\
     file://0003-toradex-tdx-cfg-block-add-aquila-am69-sku-0088-pid4.patch \
     file://0004-toradex-tdx-cfg-block-add-verdin-imx95-sku-0089-pid4.patch \
 "
+
+SRC_URI:append = "\
+    file://0001-ARM-dts-imx8mp-do-not-wrap-i.MX8M-binman-SPL-and-FIT.patch \
+"
