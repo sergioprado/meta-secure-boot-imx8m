@@ -20,4 +20,5 @@ SRC_URI:remove = "\
 
 SRC_URI:append = "\
     file://0001-ARM-dts-imx8mp-do-not-wrap-i.MX8M-binman-SPL-and-FIT.patch \
+    file://0002-ARM-dts-imx8mm-do-not-wrap-i.MX8M-binman-SPL-and-FIT.patch \
 "

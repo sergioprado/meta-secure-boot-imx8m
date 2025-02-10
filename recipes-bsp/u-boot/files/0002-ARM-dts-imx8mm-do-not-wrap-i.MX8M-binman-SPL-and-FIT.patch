@@ -1,0 +1,52 @@
+From 28de567b3839d44a75b33d38356689e464c83765 Mon Sep 17 00:00:00 2001
+From: Sergio Prado <sergio.prado@e-labworks.com>
+Date: Mon, 10 Feb 2025 10:14:45 -0300
+Subject: [PATCH] ARM: dts: imx8mm: do not wrap i.MX8M binman SPL and FIT nodes
+ in CST node
+
+Currently, meta-toradex-security has its own logic to sign the boot
+artifacts, so for now, do not use binman for that.
+
+This is basically reverting commit d415a48b405ea218da37f1a9e9d02151a07862be.
+
+Upstream-Status: Inappropriate
+
+Signed-off-by: Sergio Prado <sergio.prado@e-labworks.com>
+---
+ arch/arm/dts/imx8mm-u-boot.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/dts/imx8mm-u-boot.dtsi b/arch/arm/dts/imx8mm-u-boot.dtsi
+index 8a927e5f2099..96d953dd245f 100644
+--- a/arch/arm/dts/imx8mm-u-boot.dtsi
++++ b/arch/arm/dts/imx8mm-u-boot.dtsi
+@@ -54,7 +54,7 @@
+ 		};
+ #endif
+ 
+-#ifdef CONFIG_IMX_HAB
++#ifdef __CONFIG_IMX_HAB
+ 		nxp-imx8mcst@0 {
+ 			filename = "u-boot-spl-mkimage.signed.bin";
+ 			nxp,loader-address = <CONFIG_SPL_TEXT_BASE>;
+@@ -105,7 +105,7 @@
+ 					};
+ 				};
+ 			};
+-#ifdef CONFIG_IMX_HAB
++#ifdef __CONFIG_IMX_HAB
+ 		};
+ 
+ 		nxp-imx8mcst@1 {
+@@ -212,7 +212,7 @@
+ 					};
+ 				};
+ 			};
+-#ifdef CONFIG_IMX_HAB
++#ifdef __CONFIG_IMX_HAB
+ 		};
+ #endif
+ 	};
+-- 
+2.34.1
+
