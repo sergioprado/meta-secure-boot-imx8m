@@ -1,0 +1,13 @@
+# general configuration
+ACCEPT_FSL_EULA = "1"
+
+# secure boot
+INHERIT += "tdx-signed"
+TDX_UBOOT_HARDENING_ENABLE = "0"
+
+# op-tee
+INHERIT += "tdx-optee"
+TDX_OPTEE_FTPM = "1"
+TDX_OPTEE_PKCS11 = "1"
+TDX_OPTEE_FS_RPMB = "0"
+TDX_OPTEE_INSTALL_TESTS = "1"
